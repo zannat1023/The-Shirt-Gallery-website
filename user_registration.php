@@ -12,7 +12,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -51,8 +51,8 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item" type="button"><a href="user_login.php">Sign in</a></button>
-                    <button class="dropdown-item" type="button"><a href="user_registration.php">Sign up</a></button>
+                    <button class="dropdown-item" type="button">Sign in</button>
+                    <button class="dropdown-item" type="button">Sign up</button>
                 </div>
             </div>
         </div>
@@ -70,35 +70,34 @@
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
-                        <?php 
+                        <?php
 
                         $username = "root";
                         $password = "";
                         $dbname = "s_gallery";
-    
+
                         // Create connection
                         $conn = new mysqli('localhost', $username, $password, $dbname);
-    
+
                         // Check connection
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
-    
+
                         // Fetch categories
                         $category_sql = "SELECT categoryID, categoryName FROM category";
                         $category_result = $conn->query($category_sql);
-                        
+
                         if ($category_result->num_rows > 0) {
                             while ($category = $category_result->fetch_assoc()) {
                                 echo "<div style='display:flex; flex-direction:column;'>";
                                 echo "<a href='' class='nav-item nav-link'>" . htmlspecialchars($category['categoryName']) . "</a>";
                                 echo "</div>";
                             }
-                            
                         } else {
                             echo "<p>No categories available.</p>";
                         }
-    
+
                         // Close connection
                         $conn->close();
                         ?>
@@ -127,158 +126,46 @@
     </div>
     <!-- Navbar End -->
 
-
-
-    <!-- Cart Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-light table-borderless table-hover text-center mb-0">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;"> Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width: 50px;"> Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-lg-4">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
-                <div class="bg-light p-30 mb-5">
-                    <div class="border-bottom pb-2">
-                        <div class="d-flex justify-content-between mb-3">
-                            <h6>Subtotal</h6>
-                            <h6>$150</h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
-                        </div>
+    <div class="container-fluid m-5">
+        <h2 class="text-center">Sign Up</h2>
+        <div class="row  d-flex align-items-center justify-content-center">
+            <div class="col-lg-12 col-xl-6">
+                <form action="submit_reg.php" method="post">
+                    <!--username field-->
+                    <div class="form-outline mb-5">
+                        <label for="user_username" class="form-label">Username</label>
+                        <input type="text" id="user_username" class="form-control" placeholder="Enter your name" autocomplete="off" required="required" name="user_username" />
                     </div>
-                    <div class="pt-2">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5>Total</h5>
-                            <h5>$160</h5>
-                        </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                    <!--email field-->
+                    <div class="form-outline mb-5">
+                        <label for="user_email" class="form-label">Email</label>
+                        <input type="text" id="user_useremail" class="form-control" placeholder="Enter your email" autocomplete="off" required="required" name="user_email" />
                     </div>
-                </div>
+                    <!--password field-->
+                    <div class="form-outline mb-5">
+                        <label for="user_userpassword" class="form-label">Password</label>
+                        <input type="password" id="user_userpassword" class="form-control" placeholder="Enter your password" autocomplete="off" required="required" name="user_userpassword" />
+                    </div>
+                    <!-- confrim password field-->
+                    <div class="form-outline mb-5">
+                        <label for="conf_user_userpassword" class="form-label">Confirm Password</label>
+                        <input type="password" id="conf_user_userpassword" class="form-control" placeholder="Enter your password" autocomplete="off" required="required" name="conf_user_userpassword" />
+                    </div>
+                    <!--address field-->
+                    <div class="form-outline mb-5">
+                        <label for="user_useraddress" class="form-label">Address</label>
+                        <input type="text" id="user_useraddress" class="form-control" placeholder="Enter your address" autocomplete="off" required="required" name="user_useraddress" />
+                    </div>
+                    <div class="mt-5 pt-3">
+                        <input type="submit" value="Register" class="bg-info py-2 px-3 border-0" name="user_register">
+                        <p class="small fw-bold mt-3 pt-1 mb=0">Already have an account? <a href="user_login.php"> Login</a> </p>
+
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
-    <!-- Cart End -->
-
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
@@ -345,6 +232,9 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
 </body>
 
 </html>
+
+<!--php code-->
