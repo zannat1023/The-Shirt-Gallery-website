@@ -17,14 +17,24 @@ $name = $_POST['name'];
 $description = $_POST['description'];
 $price = $_POST['price'];
 $quantity = $_POST['quantity'];
-$category = $_POST['category'];
+$categoryID = $_POST['categoryID'];
+$image = $_FILES['image'];
 
-// Validate and sanitize input
+
+$target_dir = "images/";
+$target_file = $target_dir . basename($image["name"]);
+$image_url = "";
+
+if (move_uploaded_file($image["tmp_name"], $target_file)) {
+    $image_url = $target_file;
+} else {
+    die("Sorry, there was an error uploading your file.");
+}
 
 
-if (!empty($name) && !empty($description) && !empty($price) && is_numeric($price) && !empty($quantity) && is_numeric($quantity) && !empty($category)) {
+if (!empty($name) && !empty($description) && !empty($price) && is_numeric($price) && !empty($quantity) && is_numeric($quantity)  && !empty($categoryID) && is_numeric($categoryID)  && !empty($image_url)   ) {
     // Prepare and bind
-    $stmt = "INSERT INTO product (name, description, price, quantity, category) VALUES ('$name','$description', '$price', '$quantity', '$category' )";
+    $stmt = "INSERT INTO product (name, description, price, quantity, category, image) VALUES ('$name','$description', '$price', '$quantity', '$categoryID', '$image_url' )";
     $insert = mysqli_query($conn, $stmt) or die ("query failed");
 
     // Execute statement

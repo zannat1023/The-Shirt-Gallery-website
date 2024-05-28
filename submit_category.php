@@ -26,7 +26,7 @@ if (!empty($categoryName) && !empty($description)) {
 
     // Execute statement
     if ($insert) {
-        echo "New product created successfully";
+        echo "New category created successfully";
     } else {
         echo "Error" ;
     }

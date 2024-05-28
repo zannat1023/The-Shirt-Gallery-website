@@ -9,6 +9,8 @@
             font-family: Arial, sans-serif;
             margin: 50px;
         }
+
+        
         form {
             max-width: 600px;
             margin: auto;
@@ -20,7 +22,7 @@
             display: block;
             margin-bottom: 8px;
         }
-        input[type="text"], textarea {
+        input[type="text"], textarea, select  {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -42,7 +44,8 @@
 </head>
 <body>
     <h2>Submit Product Details</h2>
-    <form action="submit_product.php" method="post">
+    <form action="submit_product.php" method="post"  enctype="multipart/form-data">
+
         <label for="name">Product Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -56,7 +59,41 @@
         <input type="text" id="quantity" name="quantity" required>
 
         <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required>
+        <select id="category" name="categoryID" required>
+
+            <option value="">Select a category</option>
+            <?php
+            $username = "root";
+            $password = "";
+            $dbname = "s_gallery";
+
+            // Create connection
+            $conn = new mysqli("localhost", $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Fetch categories
+            $category_sql = "SELECT categoryID, categoryName FROM category";
+            $category_result = $conn->query($category_sql);
+
+            if ($category_result->num_rows > 0) {
+                while ($category = $category_result->fetch_assoc()) {
+                    echo "<option value='" . $category['categoryID'] . "'>" . $category['categoryName'] . "</option>";
+                }
+            } else {
+                echo "<option value=''>No categories available</option>";
+            }
+
+            // Close connection
+            $conn->close();
+            ?>
+        </select>
+
+        <label for="image">Product Image:</label>
+        <input type="file" id="image" name="image" required>
 
 
         <input type="submit" value="Submit">
