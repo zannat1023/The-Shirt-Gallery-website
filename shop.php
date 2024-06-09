@@ -180,7 +180,7 @@
                                                 echo "<div class='d-flex align-items-center justify-content-center mt-2'>";
                                                     echo "<h5>BDT. " . number_format($product['price'], 2) . "</h5>";
 
-                                                echo "</div>";
+                                                 echo "</div>";
                         
                                             echo "</div>";
                                         echo "</div>";
