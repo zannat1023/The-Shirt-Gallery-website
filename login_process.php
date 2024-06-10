@@ -32,13 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
 
         // Verify the password
-        if (password_verify($customerPassword, $user['CustomerPassword'])) {
+        if ($customerPassword=== $user['CustomerPassword']) {
             // Password is correct, start the session
             $_SESSION['customerName'] = $user['CustomerName'];
             $_SESSION['customerEmail'] = $user['CustomerEmail'];
             echo "<script>alert('Login successful.'); window.location.href='index.php';</script>";
-        } else {
-            echo "<script>alert('Incorrect password.'); window.location.href='user_login.php';</script>";
+        } else { 
+            echo  $customerPassword ;
+            echo  $user['CustomerPassword'] ;
+
+            //echo "<script>alert('Incorrect password.'); window.location.href='user_login.php';</script>";
         }
     } else {
         echo "<script>alert('Username not found.'); window.location.href='user_login.php';</script>";

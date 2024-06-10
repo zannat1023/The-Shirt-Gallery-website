@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Insert into the database
         $stmt = $conn->prepare("INSERT INTO customer (CustomerName, CustomerEmail, CustomerPassword, CustomerAddress) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $customerName, $customerEmail, $hashedPassword, $customerAddress);
+        $stmt->bind_param("ssss", $customerName, $customerEmail, $customerPassword, $customerAddress);
 
         if ($stmt->execute()) {
             echo "<script>alert('Registration successful.'); window.location.href='index.php';</script>";
