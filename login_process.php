@@ -36,7 +36,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, start the session
             $_SESSION['customerName'] = $user['CustomerName'];
             $_SESSION['customerEmail'] = $user['CustomerEmail'];
-            echo "<script>alert('Login successful.'); window.location.href='index.php';</script>";
+            $_SESSION['user_id'] = $user['CustomerID'];
+            //echo "<script>alert('Login successful.'); window.location.href='index.php';</script>";
+
+            if (isset($_SESSION['redirect_url'])) {
+                $redirect_url = $_SESSION['redirect_url'];
+                unset($_SESSION['redirect_url']);
+                header("Location: $redirect_url");
+            } else {
+                header("Location: index.php");
+            }
+            exit();
+
+
         } else { 
             echo  $customerPassword ;
             echo  $user['CustomerPassword'] ;

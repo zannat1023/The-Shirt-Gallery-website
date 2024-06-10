@@ -21,7 +21,7 @@ $product_id = $_GET['product_id'];
 if ($action == 'add' || $action == 'buynow') {
     // Add the item to the cart
     $cart_id = uniqid();
-    $cart_sql = "INSERT INTO cart (cartID, user, cartItems) VALUES ('$cart_id', '$user', '$product_id')";
+    $cart_sql = "INSERT INTO cart (cartID, CustomerID, cartItems) VALUES ('$cart_id', '$user_id', '$product_id')";
 
     if ($conn->query($cart_sql) === TRUE) {
         if ($action == 'buynow') {

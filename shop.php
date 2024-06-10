@@ -1,3 +1,12 @@
+<?php
+session_start(); // Start the session
+$_SESSION['redirect_url'] = "/S_gallery/The-Shirt-Gallery-website/shop.php";
+// Check if the user is logged in
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 

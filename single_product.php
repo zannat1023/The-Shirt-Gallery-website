@@ -1,3 +1,11 @@
+<?php
+session_start(); // Start the session
+$_SESSION['redirect_url'] = "/single_product.php";
+// Check if the user is logged in
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -166,7 +174,7 @@
                             echo "<p>Price: BDT " . number_format($product['price'], 2) . "</p>";
                             echo "<p>Quantity: " . $product['quantity'] . "</p>";
                             echo "<img src='" . htmlspecialchars($product['image']) . "' alt='" . htmlspecialchars($product['name']) . "'>";
-                            echo "<a href='cart_view.php? action=add&product_id=" . htmlspecialchars($product['productID']) . "' class='btn btn-primary px-3'><i class='fa fa-shopping-cart mr-1'></i> Add To Cart</a>";
+                            echo "<a href='cart_view.php?action=add&product_id=" . htmlspecialchars($product['productID']) . "' class='btn btn-primary px-3'><i class='fa fa-shopping-cart mr-1'></i> Add To Cart</a>";
                             echo "</div>";
 
 

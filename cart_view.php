@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['user_id'])) {
     // Redirect to login page if not logged in
-    header('Location: login.php');
+    header('Location: user_login.php');
     exit();
 }
 
@@ -20,6 +20,20 @@ $conn = new mysqli('localhost', $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+$user_id = $_SESSION['user_id'];
+$product_id = mysqli_real_escape_string($conn, $_GET['product_id']);
+
+// Add product to cart for the user
+$add_to_cart_sql = "INSERT INTO cart (CustomerID, productID, quantity) VALUES ('$user_id', '$product_id', 1)";
+$conn->query($add_to_cart_sql);
+
+// Redirect to cart page
+header('Location: cart_view.php');
+exit();
+?>
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

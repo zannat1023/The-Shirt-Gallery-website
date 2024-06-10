@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    // Redirect to login page if not logged in
+
+    $redirect_url = $_SESSION['redirect_url'];
+    header("Location: $redirect_url");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
