@@ -171,7 +171,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                $product_sql = "SELECT name, description, price, quantity, image FROM product ";
+                $product_sql = "SELECT productID, name, description, price, quantity, image FROM product ";
                 $product_result = $conn->query($product_sql);
 
                 if ($product_result->num_rows > 0) {
@@ -181,10 +181,10 @@
                         echo "<div class='col-lg-4 col-md-6 col-sm-6 pb-1'>";
                             echo"<div class='product-item bg-light mb-4'>";
                                 echo "<div class='product-img position-relative overflow-hidden'>";
-                                    echo "<img src='" . htmlspecialchars($product['image']) . "' alt='" . htmlspecialchars($product['name']) . "'>";
+                                echo "<a href='single_product.php?product_id=" .htmlspecialchars($product['productID']) . "'><img src='" . htmlspecialchars($product['image']) . "' alt='" . htmlspecialchars($product['name']) . "'> </a>";
                                 echo "</div>";
                                 echo "<div class='text-center py-4'>";
-                                    echo "<a class='h6 text-decoration-none text-truncate' href=''>" . htmlspecialchars($product['name']) . "</a>";
+                                echo "<a class='h6 text-decoration-none text-truncate' href='single_product.php?product_id=" .htmlspecialchars($product['productID']) . "'>" . htmlspecialchars($product['name']) . "</a>";
                                     echo "<div class='d-flex align-items-center justify-content-center mt-2'>";
                                         echo "<h5>BDT. " . number_format($product['price'], 2) . "</h5>";
 
