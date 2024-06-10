@@ -177,7 +177,7 @@
                                             echo "<a class='h6 text-decoration-none text-truncate' href='single_product.php?product_id=" .htmlspecialchars($product['productID']) . "'>" . htmlspecialchars($product['name']) . "</a>";
                                             echo "<div class='d-flex align-items-center justify-content-center mt-2'>";
                                                 echo "<h5>BDT. " . number_format($product['price'], 2) . "</h5>";
-
+                                                echo "<a href='single_product.php?product_id=" . htmlspecialchars($product['productID']) . "' class='btn btn-primary mt-3'>Buy Now</a>";
                                              echo "</div>";
                     
                                         echo "</div>";
